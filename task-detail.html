@@ -115,7 +115,7 @@
         <div class="task-control-actions">
           <div class="task-controls">
             <button type="button" class="usa-button">Approve</button>
-            <button type="button" class="usa-button usa-button--outline">Deny</button>
+            <button type="button" class="usa-button usa-button--outline" id="deny-btn">Deny</button>
             <button type="button" class="usa-button usa-button--outline">Reject for Resubmission</button>
             <span class="button-divider"></span>
             <button type="button" class="usa-button usa-button--accent-warm">HFS Lookup</button>
@@ -263,6 +263,44 @@
     </main>
   </div>
 
+  <!-- Deny Submission Modal -->
+  <div id="deny-modal" class="modal-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="deny-modal-title">
+    <div class="modal-content" style="max-width: 1000px;">
+      <div class="modal-header">
+        <h2 class="modal-title" id="deny-modal-title">Deny Submission</h2>
+        <button type="button" class="modal-close" id="deny-modal-close" aria-label="Close modal">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3>Instructions</h3>
+        <p>You may enter notes related to the denial. These notes will be visible on related submission rows in the agency's Applicant Profile for the constituent. If you provide notes in the Constituent Notes area, these notes will also be emailed to the constituent and be available in their account on related submission rows.</p>
+
+        <label class="usa-label" for="agency-notes">Agency Notes</label>
+        <textarea class="usa-textarea" id="agency-notes" name="agency-notes" maxlength="1000"></textarea>
+        <div class="character-counter"><span id="agency-notes-remaining">1000</span> of 1000 remaining</div>
+
+        <hr style="margin: 2rem 0; border: none; border-top: 1px solid #dfe1e2;">
+
+        <div class="usa-checkbox">
+          <input class="usa-checkbox__input" id="send-denial-email" type="checkbox" name="send-denial-email">
+          <label class="usa-checkbox__label" for="send-denial-email">Send denied submission email to constituent.</label>
+        </div>
+
+        <label class="usa-label" style="margin-top: 1.5rem;" for="constituent-notes">Constituent Notes</label>
+        <textarea class="usa-textarea" id="constituent-notes" name="constituent-notes" maxlength="1000"></textarea>
+        <div class="character-counter" style="margin-bottom: 2rem;"><span id="constituent-notes-remaining">1000</span> of 1000 remaining</div>
+      </div>
+      <!-- <hr class="modal-divider"> -->
+      <div class="modal-footer">
+        <button type="button" class="usa-button" id="deny-submit-btn">Deny Submission</button>
+        <button type="button" class="usa-button usa-button--secondary" id="deny-cancel-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Task data - matches the table from my-tasks.html
     const taskData = {
@@ -380,6 +418,35 @@
         initiateInspectionBtn.href = `initiate-inspection.html?id=${taskId}`;
       }
     }
+
+    // Deny modal
+    const denyModal = document.getElementById('deny-modal');
+
+    document.getElementById('deny-btn').addEventListener('click', () => {
+      denyModal.removeAttribute('hidden');
+    });
+
+    function closeDenyModal() {
+      denyModal.setAttribute('hidden', '');
+    }
+
+    document.getElementById('deny-modal-close').addEventListener('click', closeDenyModal);
+    document.getElementById('deny-cancel-btn').addEventListener('click', closeDenyModal);
+
+    denyModal.addEventListener('click', (e) => {
+      if (e.target === denyModal) closeDenyModal();
+    });
+
+    function wireCounter(textareaId, remainingId) {
+      const textarea = document.getElementById(textareaId);
+      const counter = document.getElementById(remainingId);
+      textarea.addEventListener('input', () => {
+        counter.textContent = 1000 - textarea.value.length;
+      });
+    }
+
+    wireCounter('agency-notes', 'agency-notes-remaining');
+    wireCounter('constituent-notes', 'constituent-notes-remaining');
 
     // Accordion functionality
     document.querySelectorAll('.usa-accordion__button').forEach(button => {

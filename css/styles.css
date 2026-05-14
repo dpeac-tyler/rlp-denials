@@ -1526,6 +1526,10 @@ select:focus {
   min-height: 0;
 }
 
+.modal-body h3 {
+  font-size: 2rem;
+}
+
 .modal-divider {
   margin: 0;
   border: none;
