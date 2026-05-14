@@ -285,6 +285,184 @@
           </div>
           <!-- End Certificates Tab -->
 
+          <!-- Submissions Tab Content -->
+          <div id="submissions-tab" class="tab-panel" hidden>
+            <!-- Sub-tabs for My Submissions and Payment Requests -->
+            <div class="horizontal-tabs">
+              <button type="button" class="horizontal-tab active" data-submissions-tab="my-submissions">My Submissions</button>
+              <button type="button" class="horizontal-tab" data-submissions-tab="payment-requests">Payment Requests (0)</button>
+            </div>
+
+            <!-- My Submissions Sub-tab Content -->
+            <div id="my-submissions-subtab" class="submissions-subtab-content active">
+              <div class="usa-accordion usa-accordion--bordered" style="margin-top: 15px;">
+                <h3 class="usa-accordion__heading">
+                  <button type="button" class="usa-accordion__button" aria-expanded="true" aria-controls="submissions-icon-key">
+                    Icon Key
+                  </button>
+                </h3>
+                <div id="submissions-icon-key" class="usa-accordion__content usa-prose">
+                  <p class="text-bold margin-0 margin-bottom-2">Options and Control Types</p>
+                  <div class="icon-key-grid">
+                    <div class="icon-key-item">
+                      <img src="assets/continue-submission.png" alt="" width="24" height="24">
+                      <span>- Continue Submission</span>
+                    </div>
+                    <div class="icon-key-item">
+                      <img src="assets/icon-delete.png" alt="" width="24" height="24">
+                      <span>- Delete Submission</span>
+                    </div>
+                    <div class="icon-key-item">
+                      <img src="assets/view-reason.png" alt="" width="24" height="24">
+                      <span>- View Reason</span>
+                    </div>
+                    <div class="icon-key-item">
+                      <img src="assets/view-submission.png" alt="" width="24" height="24">
+                      <span>- View Submission</span>
+                    </div>
+                    <div class="icon-key-item">
+                      <img src="assets/view-workflow.png" alt="" width="24" height="24">
+                      <span>- View Workflow</span>
+                    </div>
+                    <div class="icon-key-item">
+                      <img src="assets/view-transactions.png" alt="" width="24" height="24">
+                      <span>- View Transactions</span>
+                    </div>
+                    <div class="icon-key-item">
+                      <img src="assets/initiate-refund.png" alt="" width="24" height="24">
+                      <span>- Initiate Refund</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="margin-top-2">
+                <div class="table-controls">
+                  <div class="table-controls__left">
+                    <strong>Showing 1 - 3 of 3 Entries</strong>
+                  </div>
+                  <div class="table-controls__right">
+                    <label for="entries-per-page-submissions" class="table-controls__label">Show</label>
+                    <select class="usa-select table-controls__select" id="entries-per-page-submissions" name="entries-per-page-submissions">
+                      <option value="10" selected>10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                  </div>
+                </div>
+
+                <table class="usa-table usa-table--borderless usa-table--striped" id="submissions-table">
+                  <thead>
+                    <tr>
+                      <th scope="col" role="columnheader" aria-sort="none">License Type <span class="sort-arrows"></span></th>
+                      <th scope="col" role="columnheader" aria-sort="none">Application Name <span class="sort-arrows"></span></th>
+                      <th scope="col" role="columnheader" aria-sort="none">Submission Number <span class="sort-arrows"></span></th>
+                      <th scope="col" role="columnheader" aria-sort="none">Status <span class="sort-arrows"></span></th>
+                      <th scope="col" role="columnheader" aria-sort="none">Submitted By <span class="sort-arrows"></span></th>
+                      <th scope="col" role="columnheader" aria-sort="none">Submitted Date <span class="sort-arrows"></span></th>
+                      <th scope="col" role="columnheader" style="white-space: nowrap;">Controls</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Eligibility Flag Test</td>
+                      <td>Original Application</td>
+                      <td>SUB-000172601-001</td>
+                      <td><span class="status-badge status-approved">Approved</span></td>
+                      <td>Sarah Johnson</td>
+                      <td>03/14/2024</td>
+                      <td>
+                        <a href="#" class="icon-button" aria-label="View Submission">
+                          <img src="assets/view-submission.png" alt="" width="30" height="30">
+                        </a>
+                        <a href="#" class="icon-button" aria-label="View Workflow">
+                          <img src="assets/view-workflow.png" alt="" width="30" height="30">
+                        </a>
+                        <a href="#" class="icon-button" aria-label="View Transactions">
+                          <img src="assets/view-transactions.png" alt="" width="30" height="30">
+                        </a>
+                        <a href="#" class="icon-button" aria-label="Initiate Refund">
+                          <img src="assets/initiate-refund.png" alt="" width="30" height="30">
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Hunting License</td>
+                      <td>Renewal Application</td>
+                      <td>SUB-000172601-002</td>
+                      <td><span class="status-badge status-pending">Pending</span></td>
+                      <td>Sarah Johnson</td>
+                      <td>01/08/2025</td>
+                      <td>
+                        <a href="#" class="icon-button" aria-label="View Submission">
+                          <img src="assets/view-submission.png" alt="" width="30" height="30">
+                        </a>
+                        <a href="#" class="icon-button" aria-label="View Workflow">
+                          <img src="assets/view-workflow.png" alt="" width="30" height="30">
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Fishing License</td>
+                      <td>Amendment</td>
+                      <td>SUB-000172601-003</td>
+                      <td><span class="status-badge status-draft">Draft</span></td>
+                      <td>Agency Staff</td>
+                      <td>04/22/2025</td>
+                      <td>
+                        <a href="#" class="icon-button" aria-label="Continue Submission">
+                          <img src="assets/continue-submission.png" alt="" width="30" height="30">
+                        </a>
+                        <a href="#" class="icon-button" aria-label="Delete Submission">
+                          <img src="assets/icon-delete.png" alt="" width="30" height="30">
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Payment Requests Sub-tab Content -->
+            <div id="payment-requests-subtab" class="submissions-subtab-content" hidden>
+              <div class="margin-top-2">
+                <div class="table-controls">
+                  <div class="table-controls__left">
+                    <strong>Showing 0 - 0 of 0 Entries</strong>
+                  </div>
+                  <div class="table-controls__right">
+                    <label for="entries-per-page-payment-requests" class="table-controls__label">Show</label>
+                    <select class="usa-select table-controls__select" id="entries-per-page-payment-requests" name="entries-per-page-payment-requests">
+                      <option value="10" selected>10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                  </div>
+                </div>
+
+                <table class="usa-table usa-table--borderless" id="payment-requests-table">
+                  <thead>
+                    <tr>
+                      <th scope="col" role="columnheader" aria-sort="none">Payment Request Number <span class="sort-arrows"></span></th>
+                      <th scope="col" role="columnheader" aria-sort="none">Amount <span class="sort-arrows"></span></th>
+                      <th scope="col" role="columnheader" aria-sort="none">Status <span class="sort-arrows"></span></th>
+                      <th scope="col" role="columnheader" aria-sort="none">Created Date <span class="sort-arrows"></span></th>
+                      <th scope="col" role="columnheader" style="white-space: nowrap;">Controls</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="background-color: #fff;">
+                      <td colspan="5" style="text-align: center; padding: 2rem; color: #71767a; font-style: italic;">No data available</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- End Submissions Tab -->
+
           <!-- Inspections Tab Content -->
           <div id="inspections-tab" class="tab-panel" hidden>
             <div class="usa-accordion usa-accordion--bordered margin-top-2">
@@ -1367,7 +1545,7 @@
     const tabs = document.querySelectorAll('.profile-tab');
     const tabPanels = {
       'Certificates': document.getElementById('certificates-tab'),
-      'Submissions': null,
+      'Submissions': document.getElementById('submissions-tab'),
       'Assets': null,
       'Documents': null,
       'Affiliations': null,
@@ -1885,6 +2063,30 @@
         });
 
         // Show selected sub-tab content
+        const targetContent = document.getElementById(`${targetSubTab}-subtab`);
+        if (targetContent) {
+          targetContent.classList.add('active');
+          targetContent.removeAttribute('hidden');
+        }
+      });
+    });
+
+    // Submissions sub-tab switching
+    const submissionsSubTabs = document.querySelectorAll('.horizontal-tab[data-submissions-tab]');
+    const submissionsSubTabContents = document.querySelectorAll('.submissions-subtab-content');
+
+    submissionsSubTabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        const targetSubTab = this.dataset.submissionsTab;
+
+        submissionsSubTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        submissionsSubTabContents.forEach(content => {
+          content.classList.remove('active');
+          content.setAttribute('hidden', '');
+        });
+
         const targetContent = document.getElementById(`${targetSubTab}-subtab`);
         if (targetContent) {
           targetContent.classList.add('active');

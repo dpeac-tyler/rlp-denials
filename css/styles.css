@@ -2948,11 +2948,13 @@ input[type="date"].usa-input {
 /* Correspondence Sub-tabs
    ========================================================================== */
 
-.correspondence-subtab-content {
+.correspondence-subtab-content,
+.submissions-subtab-content {
   display: none;
 }
 
-.correspondence-subtab-content.active {
+.correspondence-subtab-content.active,
+.submissions-subtab-content.active {
   display: block;
 }
 
