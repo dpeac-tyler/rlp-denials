@@ -58,11 +58,11 @@
             <div class="tablet:grid-col-6 logo-flex">
               <a class="agency-logo-link" href="index.html">
                 <img src="assets/agency-logo.png"
-                     alt="Arkansas State Police agency logo"
+                     alt="ASP agency logo"
                      class="agency-logo">
               </a>
               <a class="agency-name-link" href="index.html">
-                <div class="agency-name">Arkansas State Police</div>
+                <div class="agency-name">ASP</div>
               </a>
             </div>
             <div class="tablet:grid-col-6">
@@ -257,7 +257,7 @@
         { id: 'TMPL-EMAIL-006', name: 'Out-of-Season Notice', appliesTo: 'Application', status: 'Inactive', hasUsage: false, subject: 'Out-of-Season Application Notice - {{credential_name}}', body: 'Dear {{contact_name}},\n\nThis notice is to advise you that applications for {{credential_name}} are not being accepted at this time.\n\nSincerely,\n{{user_name}}', version: 1, createdDate: '2025-02-14', createdBy: 'Jennifer Adams', lastModifiedDate: '2025-02-14', lastModifiedBy: 'Jennifer Adams', versions: [] }
       ];
       const letterTemplates = [
-        { id: 'TMPL-LETTER-001', name: 'Application Held', appliesTo: 'Application', deliveryMethods: ['Standard', 'Certified'], status: 'Active', hasUsage: true, body: '{{date}}\n\n{{address_line1}}\n{{address_line2}}\n{{city}}, {{state}} {{zip}}\n\nDear {{manager_name}}:\n\nThe Arkansas State Police has received the {{credential_name}} application for {{contact_name}}.\n\nSincerely,\n{{user_name}}\n{{user_email}}', version: 2, createdDate: '2025-01-10', createdBy: 'Michael Rodriguez', lastModifiedDate: '2025-04-10', lastModifiedBy: 'Michael Rodriguez', versions: [] },
+        { id: 'TMPL-LETTER-001', name: 'Application Held', appliesTo: 'Application', deliveryMethods: ['Standard', 'Certified'], status: 'Active', hasUsage: true, body: '{{date}}\n\n{{address_line1}}\n{{address_line2}}\n{{city}}, {{state}} {{zip}}\n\nDear {{manager_name}}:\n\nThe ASP has received the {{credential_name}} application for {{contact_name}}.\n\nSincerely,\n{{user_name}}\n{{user_email}}', version: 2, createdDate: '2025-01-10', createdBy: 'Michael Rodriguez', lastModifiedDate: '2025-04-10', lastModifiedBy: 'Michael Rodriguez', versions: [] },
         { id: 'TMPL-LETTER-002', name: 'Compliance Letter', appliesTo: 'Case', deliveryMethods: ['Certified'], status: 'Active', hasUsage: true, body: '{{date}}\n\n{{address_line1}}\n{{city}}, {{state}} {{zip}}\n\nDear {{contact_name}}:\n\nThis letter is to notify you of a compliance requirement.\n\nSincerely,\n{{user_name}}', version: 1, createdDate: '2025-02-01', createdBy: 'Jennifer Adams', lastModifiedDate: '2025-02-01', lastModifiedBy: 'Jennifer Adams', versions: [] },
         { id: 'TMPL-LETTER-003', name: 'Deficiency Notice', appliesTo: 'Application', deliveryMethods: ['Standard'], status: 'Active', hasUsage: false, body: '{{date}}\n\nDear {{contact_name}}:\n\nYour application for {{credential_name}} is deficient. Please provide the missing information within 30 days.\n\nSincerely,\n{{user_name}}', version: 1, createdDate: '2025-01-20', createdBy: 'Michael Rodriguez', lastModifiedDate: '2025-01-20', lastModifiedBy: 'Michael Rodriguez', versions: [] },
         { id: 'TMPL-LETTER-004', name: 'Notice of Violation', appliesTo: 'Case', deliveryMethods: ['Certified'], status: 'Draft', hasUsage: false, body: '{{date}}\n\n{{address_line1}}\n{{city}}, {{state}} {{zip}}\n\nDear {{contact_name}}:\n\nThis letter serves as formal notification that you are in violation of applicable regulations.\n\nSincerely,\n{{user_name}}', version: 1, createdDate: '2025-04-20', createdBy: 'Michael Rodriguez', lastModifiedDate: '2025-04-20', lastModifiedBy: 'Michael Rodriguez', versions: [] },
@@ -307,7 +307,7 @@
       manager_name:    { label: 'Manager Name',            value: 'Sarah Johnson',                            readonly: true  },
       rejection_dates: { label: 'Rejection Date(s)',       value: '',                                         readonly: false },
       mailed_date:     { label: 'Mailed Date',             value: '',                                         readonly: false },
-      agency_name:     { label: 'Agency Name',             value: 'Arkansas State Police', readonly: true  },
+      agency_name:     { label: 'Agency Name',             value: 'ASP', readonly: true  },
       bg_number:       { label: 'BG Number',               value: 'BG-2026-0042',                             readonly: true  },
       tracking_number: { label: 'Tracking Number',         value: 'TRK-2026-00891',                           readonly: true  },
       delivery_method: { label: 'Delivery Method',         value: 'Certified Mail',                           readonly: true  }
