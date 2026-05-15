@@ -495,11 +495,11 @@
       });
 
       function updateButtonText() {
-        const selected = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.value);
+        const selected = Array.from(checkboxes).filter(cb => cb.checked);
         if (selected.length === 0) {
           buttonText.textContent = 'Please Select';
         } else if (selected.length === 1) {
-          buttonText.textContent = selected[0];
+          buttonText.textContent = selected[0].closest('label').querySelector('span').textContent;
         } else {
           buttonText.textContent = `${selected.length} selected`;
         }

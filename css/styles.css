@@ -2962,3 +2962,9 @@ input[type="date"].usa-input {
 #no-letters-message {
   background-color: #fff !important;
 }
+
+/* Final status colors */
+.status-denied {
+  color: #CD2026;
+  font-weight: bold;
+}

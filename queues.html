@@ -248,7 +248,8 @@
         </form>
       </div>
 
-      <div class="margin-top-2">
+      <!-- Open View -->
+      <div id="open-view" class="margin-top-2">
         <div class="table-controls">
           <div class="table-controls__left">
             <strong>Showing 1 - 5 of 5 Entries</strong>
@@ -393,10 +394,149 @@
         </nav>
       </div>
 
+      <!-- Denied View -->
+      <div id="denied-view" class="margin-top-2" hidden>
+        <div class="table-controls">
+          <div class="table-controls__left">
+            <strong>Showing 1 - 4 of 4 Entries</strong>
+          </div>
+          <div class="table-controls__right">
+            <label for="denied-entries-per-page" class="table-controls__label">Show</label>
+            <select class="usa-select table-controls__select" id="denied-entries-per-page" name="denied-entries-per-page">
+              <option value="100" selected>100</option>
+              <option value="50">50</option>
+              <option value="25">25</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        </div>
+
+        <table class="usa-table usa-table--borderless usa-table--striped">
+          <thead>
+            <tr>
+              <th scope="col" role="columnheader" aria-sort="none">Application Title <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none">Task Name <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none">Constituent Name <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none">Submitted Date <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none">Closed Date <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none">Closed By <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none">User Group <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none">Final Status <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader">Controls</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Business Application 456</td>
+              <td>Background Check</td>
+              <td>Jennifer Lee</td>
+              <td>03/18/2026</td>
+              <td>04/02/2026</td>
+              <td>Sarah Johnson</td>
+              <td>Application Processors</td>
+              <td class="status-denied">Denied</td>
+              <td>
+                <a href="task-detail-denied.html" class="icon-button" aria-label="View Task">
+                  <img src="assets/eye-icon.png" alt="" width="30" height="30">
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>Contractor License Application</td>
+              <td>Eligibility Review</td>
+              <td>Kevin Martinez</td>
+              <td>03/10/2026</td>
+              <td>03/28/2026</td>
+              <td>Michael Chen</td>
+              <td>License Reviewers</td>
+              <td class="status-denied">Denied</td>
+              <td>
+                <a href="task-detail-denied.html" class="icon-button" aria-label="View Task">
+                  <img src="assets/eye-icon.png" alt="" width="30" height="30">
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>Professional Engineer Application</td>
+              <td>Document Review</td>
+              <td>Lisa Thompson</td>
+              <td>02/25/2026</td>
+              <td>03/15/2026</td>
+              <td>Alan Jones</td>
+              <td>License Reviewers</td>
+              <td class="status-denied">Denied</td>
+              <td>
+                <a href="task-detail-denied.html" class="icon-button" aria-label="View Task">
+                  <img src="assets/eye-icon.png" alt="" width="30" height="30">
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>Business Application 789</td>
+              <td>Background Check</td>
+              <td>Thomas Wilson</td>
+              <td>03/01/2026</td>
+              <td>03/20/2026</td>
+              <td>Sarah Johnson</td>
+              <td>Application Processors</td>
+              <td class="status-denied">Denied</td>
+              <td>
+                <a href="task-detail-denied.html" class="icon-button" aria-label="View Task">
+                  <img src="assets/eye-icon.png" alt="" width="30" height="30">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <nav aria-label="Pagination" class="usa-pagination" style="display: flex; justify-content: center; margin-top: 2rem;">
+          <ul class="usa-pagination__list">
+            <li class="usa-pagination__item usa-pagination__arrow">
+              <a href="#" class="usa-pagination__link usa-pagination__previous-page" aria-label="Previous page">
+                <span>‹</span>
+                <span class="usa-pagination__link-text">Previous</span>
+              </a>
+            </li>
+            <li class="usa-pagination__item usa-pagination__page-no">
+              <a href="#" class="usa-pagination__button usa-current" aria-label="Page 1" aria-current="page">1</a>
+            </li>
+            <li class="usa-pagination__item usa-pagination__arrow">
+              <a href="#" class="usa-pagination__link usa-pagination__next-page" aria-label="Next page">
+                <span class="usa-pagination__link-text">Next</span>
+                <span>›</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
     </main>
   </div>
 
   <script>
+    // Category filter button switching
+    (function() {
+      const filterBtns = document.querySelectorAll('.category-filter-btn');
+      const openView = document.getElementById('open-view');
+      const deniedView = document.getElementById('denied-view');
+      const pageTitle = document.querySelector('.page-title');
+      const breadcrumbCurrent = document.querySelector('.usa-breadcrumb__list-item.usa-current span');
+
+      filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          filterBtns.forEach(function(b) { b.classList.remove('active'); });
+          this.classList.add('active');
+
+          const label = this.textContent.trim();
+          pageTitle.textContent = label + ' Applications';
+          breadcrumbCurrent.textContent = label;
+
+          openView.hidden = (label !== 'Open');
+          deniedView.hidden = (label !== 'Denied');
+        });
+      });
+    })();
+
     // Accordion functionality
     document.querySelectorAll('.usa-accordion__button').forEach(button => {
       button.addEventListener('click', function() {
