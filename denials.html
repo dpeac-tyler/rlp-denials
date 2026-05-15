@@ -171,7 +171,7 @@
                 <a href="#" class="icon-button" aria-label="View Denial Code">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
-                <a href="#" class="icon-button" aria-label="Edit Denial Code">
+                <a href="edit-denial-code.html" class="icon-button" aria-label="Edit Denial Code">
                   <img src="assets/edit-icon.png" alt="" width="30" height="30">
                 </a>
                 <a href="#" class="icon-button" aria-label="Delete Denial Code">
@@ -189,7 +189,7 @@
                 <a href="#" class="icon-button" aria-label="View Denial Code">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
-                <a href="#" class="icon-button" aria-label="Edit Denial Code">
+                <a href="edit-denial-code.html" class="icon-button" aria-label="Edit Denial Code">
                   <img src="assets/edit-icon.png" alt="" width="30" height="30">
                 </a>
                 <a href="#" class="icon-button" aria-label="Delete Denial Code">
@@ -207,7 +207,7 @@
                 <a href="#" class="icon-button" aria-label="View Denial Code">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
-                <a href="#" class="icon-button" aria-label="Edit Denial Code">
+                <a href="edit-denial-code.html" class="icon-button" aria-label="Edit Denial Code">
                   <img src="assets/edit-icon.png" alt="" width="30" height="30">
                 </a>
                 <a href="#" class="icon-button" aria-label="Delete Denial Code">
@@ -225,7 +225,7 @@
                 <a href="#" class="icon-button" aria-label="View Denial Code">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
-                <a href="#" class="icon-button" aria-label="Edit Denial Code">
+                <a href="edit-denial-code.html" class="icon-button" aria-label="Edit Denial Code">
                   <img src="assets/edit-icon.png" alt="" width="30" height="30">
                 </a>
                 <a href="#" class="icon-button" aria-label="Delete Denial Code">
@@ -243,7 +243,7 @@
                 <a href="#" class="icon-button" aria-label="View Denial Code">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
-                <a href="#" class="icon-button" aria-label="Edit Denial Code">
+                <a href="edit-denial-code.html" class="icon-button" aria-label="Edit Denial Code">
                   <img src="assets/edit-icon.png" alt="" width="30" height="30">
                 </a>
                 <a href="#" class="icon-button" aria-label="Delete Denial Code">
@@ -290,71 +290,7 @@
     </div>
   </div>
 
-  <!-- Edit Denial Code Modal -->
-  <div id="edit-modal" class="modal" hidden>
-    <div class="modal-overlay"></div>
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title">Edit Denial Code</h2>
-        <button type="button" class="modal-close" aria-label="Close modal" id="edit-close">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="margin-bottom-4">
-          <label class="usa-label" for="edit-code">Code <span class="field-required">Required</span></label>
-          <input class="usa-input" id="edit-code" name="edit-code" type="text" required>
-        </div>
-
-        <div class="margin-bottom-4">
-          <label class="usa-label" for="edit-display-label">Display Label <span class="field-required">Required</span></label>
-          <input class="usa-input" id="edit-display-label" name="edit-display-label" type="text" required>
-        </div>
-
-        <div class="margin-bottom-4">
-          <label class="usa-label" for="edit-description">Description</label>
-          <input class="usa-input" id="edit-description" name="edit-description" type="text">
-        </div>
-
-        <div class="margin-bottom-4">
-          <fieldset class="usa-fieldset">
-            <legend class="usa-label">Appealable <span class="field-required">Required</span></legend>
-            <div class="usa-radio">
-              <input class="usa-radio__input" id="appealable-yes" type="radio" name="appealable" value="Yes">
-              <label class="usa-radio__label" for="appealable-yes">Yes</label>
-            </div>
-            <div class="usa-radio">
-              <input class="usa-radio__input" id="appealable-no" type="radio" name="appealable" value="No">
-              <label class="usa-radio__label" for="appealable-no">No</label>
-            </div>
-          </fieldset>
-        </div>
-
-        <div class="margin-bottom-4">
-          <fieldset class="usa-fieldset">
-            <legend class="usa-label">Status <span class="field-required">Required</span></legend>
-            <div class="usa-radio">
-              <input class="usa-radio__input" id="edit-status-active" type="radio" name="edit-status" value="Active">
-              <label class="usa-radio__label" for="edit-status-active">Active</label>
-            </div>
-            <div class="usa-radio">
-              <input class="usa-radio__input" id="edit-status-inactive" type="radio" name="edit-status" value="Inactive">
-              <label class="usa-radio__label" for="edit-status-inactive">Inactive</label>
-            </div>
-          </fieldset>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="usa-button" id="edit-submit">Save</button>
-        <button type="button" class="usa-button usa-button--secondary" id="edit-cancel">Cancel</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
+<script>
     // Accordion functionality
     document.querySelectorAll('.usa-accordion__button').forEach(button => {
       button.addEventListener('click', function() {
@@ -368,58 +304,6 @@
           content.removeAttribute('hidden');
         }
       });
-    });
-
-    // Edit modal
-    const editModal = document.getElementById('edit-modal');
-    const editModalOverlay = editModal.querySelector('.modal-overlay');
-    let editingRow = null;
-
-    document.querySelectorAll('a[aria-label="Edit Denial Code"]').forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        editingRow = this.closest('tr');
-        const cells = editingRow.querySelectorAll('td');
-
-        document.getElementById('edit-code').value = cells[0].textContent.trim();
-        document.getElementById('edit-display-label').value = cells[1].textContent.trim();
-        document.getElementById('edit-description').value = cells[2].textContent.trim();
-
-        const appealable = cells[3].textContent.trim();
-        document.getElementById('appealable-yes').checked = appealable === 'Yes';
-        document.getElementById('appealable-no').checked = appealable === 'No';
-
-        const status = cells[4].textContent.trim();
-        document.getElementById('edit-status-active').checked = status === 'Active';
-        document.getElementById('edit-status-inactive').checked = status === 'Inactive';
-
-        editModal.removeAttribute('hidden');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    function closeEditModal() {
-      editModal.setAttribute('hidden', '');
-      document.body.style.overflow = '';
-      editingRow = null;
-    }
-
-    document.getElementById('edit-close').addEventListener('click', closeEditModal);
-    document.getElementById('edit-cancel').addEventListener('click', closeEditModal);
-    editModalOverlay.addEventListener('click', closeEditModal);
-
-    document.getElementById('edit-submit').addEventListener('click', function() {
-      if (!editingRow) return;
-      const cells = editingRow.querySelectorAll('td');
-      cells[0].textContent = document.getElementById('edit-code').value;
-      cells[1].textContent = document.getElementById('edit-display-label').value;
-      cells[2].textContent = document.getElementById('edit-description').value;
-      cells[3].textContent = document.querySelector('input[name="appealable"]:checked')?.value || '';
-
-      const status = document.querySelector('input[name="edit-status"]:checked')?.value || 'Active';
-      cells[4].innerHTML = `<span class="status-${status.toLowerCase()}">${status}</span>`;
-
-      closeEditModal();
     });
 
     // Delete modal
