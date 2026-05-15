@@ -278,18 +278,50 @@
         <h3>Instructions</h3>
         <p>You may enter notes related to the denial. These notes will be visible on related submission rows in the agency's Applicant Profile for the constituent. If you provide notes in the Constituent Notes area, these notes will also be emailed to the constituent and be available in their account on related submission rows.</p>
 
+        <label class="usa-label" for="denial-codes-button">Denial Code(s)</label>
+        <div class="multiselect-wrapper">
+          <button type="button" class="usa-select multiselect-button" id="denial-codes-button" aria-haspopup="listbox" aria-expanded="false">
+            <span class="multiselect-button-text">Please Select</span>
+            <span class="multiselect-arrow">▼</span>
+          </button>
+          <div class="multiselect-dropdown" id="denial-codes-dropdown" hidden>
+            <div class="multiselect-options">
+              <label class="multiselect-option">
+                <input type="checkbox" name="denial-codes" value="DEN-001">
+                <span>DEN-001 - Application Incomplete</span>
+              </label>
+              <label class="multiselect-option">
+                <input type="checkbox" name="denial-codes" value="DEN-002">
+                <span>DEN-002 - Background Check Failed</span>
+              </label>
+              <label class="multiselect-option">
+                <input type="checkbox" name="denial-codes" value="DEN-003">
+                <span>DEN-003 - Eligibility Requirements Not Met</span>
+              </label>
+              <label class="multiselect-option">
+                <input type="checkbox" name="denial-codes" value="DEN-004">
+                <span>DEN-004 - Duplicate Application</span>
+              </label>
+              <label class="multiselect-option">
+                <input type="checkbox" name="denial-codes" value="DEN-005">
+                <span>DEN-005 - License Previously Revoked</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="usa-checkbox" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+          <input class="usa-checkbox__input" id="send-denial-email" type="checkbox" name="send-denial-email">
+          <label class="usa-checkbox__label" for="send-denial-email">Send denied submission email to constituent.</label>
+        </div>
+
         <label class="usa-label" for="agency-notes">Agency Notes</label>
         <textarea class="usa-textarea" id="agency-notes" name="agency-notes" maxlength="1000"></textarea>
         <div class="character-counter"><span id="agency-notes-remaining">1000</span> of 1000 remaining</div>
 
         <hr style="margin: 2rem 0; border: none; border-top: 1px solid #dfe1e2;">
 
-        <div class="usa-checkbox">
-          <input class="usa-checkbox__input" id="send-denial-email" type="checkbox" name="send-denial-email">
-          <label class="usa-checkbox__label" for="send-denial-email">Send denied submission email to constituent.</label>
-        </div>
-
-        <label class="usa-label" style="margin-top: 1.5rem;" for="constituent-notes">Constituent Notes</label>
+        <label class="usa-label" for="constituent-notes">Constituent Notes</label>
         <textarea class="usa-textarea" id="constituent-notes" name="constituent-notes" maxlength="1000"></textarea>
         <div class="character-counter" style="margin-bottom: 2rem;"><span id="constituent-notes-remaining">1000</span> of 1000 remaining</div>
       </div>
@@ -447,6 +479,41 @@
 
     wireCounter('agency-notes', 'agency-notes-remaining');
     wireCounter('constituent-notes', 'constituent-notes-remaining');
+
+    // Denial codes multi-select
+    (function() {
+      const button = document.getElementById('denial-codes-button');
+      const dropdown = document.getElementById('denial-codes-dropdown');
+      const buttonText = button.querySelector('.multiselect-button-text');
+      const checkboxes = dropdown.querySelectorAll('input[type="checkbox"]');
+
+      button.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', String(!isExpanded));
+        dropdown.toggleAttribute('hidden', isExpanded);
+      });
+
+      function updateButtonText() {
+        const selected = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.value);
+        if (selected.length === 0) {
+          buttonText.textContent = 'Please Select';
+        } else if (selected.length === 1) {
+          buttonText.textContent = selected[0];
+        } else {
+          buttonText.textContent = `${selected.length} selected`;
+        }
+      }
+
+      checkboxes.forEach(cb => cb.addEventListener('change', updateButtonText));
+      dropdown.addEventListener('click', e => e.stopPropagation());
+      document.addEventListener('click', function(e) {
+        if (!button.contains(e.target) && !dropdown.contains(e.target)) {
+          button.setAttribute('aria-expanded', 'false');
+          dropdown.setAttribute('hidden', '');
+        }
+      });
+    })();
 
     // Accordion functionality
     document.querySelectorAll('.usa-accordion__button').forEach(button => {
