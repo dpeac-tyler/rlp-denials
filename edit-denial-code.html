@@ -138,17 +138,19 @@
             <input class="usa-input" id="internal-description" name="internal-description" type="text" value="Required documentation was not submitted">
           </div>
 
-          <!-- Appeal Configuration -->
+          <!-- Appealable -->
           <div class="margin-bottom-4">
-            <label class="usa-label" for="appeal-configuration">Appeal Configuration</label>
-            <select class="usa-select" id="appeal-configuration" name="appeal-configuration">
-              <option value="">Please Select</option>
-              <option value="standard-administrative-review" selected>Standard Administrative Review</option>
-              <option value="formal-hearing-process">Formal Hearing Process</option>
-              <option value="informal-review">Informal Review</option>
-              <option value="expedited-review">Expedited Review</option>
-              <option value="late-appeal-process">Late Appeal Process</option>
-            </select>
+            <fieldset class="usa-fieldset">
+              <legend class="usa-legend">Appealable <span class="field-required">Required</span></legend>
+              <div class="usa-radio">
+                <input class="usa-radio__input" id="appealable-yes" type="radio" name="appealable" value="yes" checked>
+                <label class="usa-radio__label" for="appealable-yes">Yes</label>
+              </div>
+              <div class="usa-radio">
+                <input class="usa-radio__input" id="appealable-no" type="radio" name="appealable" value="no">
+                <label class="usa-radio__label" for="appealable-no">No</label>
+              </div>
+            </fieldset>
           </div>
 
           <!-- Status -->
