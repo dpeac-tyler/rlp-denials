@@ -157,13 +157,13 @@
       <div class="margin-top-2">
         <form class="search-form">
           <div class="grid-row grid-gap-2">
-            <div class="tablet:grid-col-4">
+            <div class="tablet:grid-col-3">
               <label class="usa-label" for="application-title">Application Title</label>
               <select class="usa-select" id="application-title" name="application-title">
                 <option value="">Please Select</option>
               </select>
             </div>
-            <div class="tablet:grid-col-4">
+            <div class="tablet:grid-col-3">
               <label class="usa-label" for="task-name">Task Name</label>
               <select class="usa-select" id="task-name" name="task-name">
                 <option value="">Please Select</option>
@@ -171,9 +171,13 @@
                 <option value="child-support-check">Child Support Check</option>
               </select>
             </div>
-            <div class="tablet:grid-col-4">
+            <div class="tablet:grid-col-3">
               <label class="usa-label" for="constituent-name">Constituent Name</label>
               <input class="usa-input" id="constituent-name" name="constituent-name" type="text">
+            </div>
+            <div class="tablet:grid-col-3">
+              <label class="usa-label" for="submission-number">Submission Number</label>
+              <input class="usa-input" id="submission-number" name="submission-number" type="text">
             </div>
           </div>
 
@@ -268,7 +272,7 @@
         <table class="usa-table usa-table--borderless usa-table--striped">
           <thead>
             <tr>
-              <th scope="col" role="columnheader" aria-sort="none">Application Title <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none">Application Title / Submission No. <span class="sort-arrows"></span></th>
               <th scope="col" role="columnheader" aria-sort="none">Task Name <span class="sort-arrows"></span></th>
               <th scope="col" role="columnheader" aria-sort="none">Constituent Name <span class="sort-arrows"></span></th>
               <th scope="col" role="columnheader" aria-sort="none">Submitted By <span class="sort-arrows"></span></th>
@@ -279,7 +283,7 @@
           </thead>
           <tbody>
             <tr>
-              <td>Business Application 123</td>
+              <td>Business Application 123<div style="font-size:1.3rem;margin-top:2px;">SUB-000165432-001</div></td>
               <td>Task 1 of 1</td>
               <td>John Smith</td>
               <td>Alan Jones</td>
@@ -295,7 +299,7 @@
               </td>
             </tr>
             <tr>
-              <td>Professional Engineer Application</td>
+              <td>Professional Engineer Application<div style="font-size:1.3rem;margin-top:2px;">SUB-000168901-002</div></td>
               <td>Task 1 of 2</td>
               <td>Maria Garcia</td>
               <td>Sarah Johnson</td>
@@ -311,7 +315,7 @@
               </td>
             </tr>
             <tr>
-              <td>Contractor License Renewal</td>
+              <td>Contractor License Renewal<div style="font-size:1.3rem;margin-top:2px;">SUB-000171234-001</div></td>
               <td>Task 1 of 1</td>
               <td>Robert Williams</td>
               <td>Michael Chen</td>
@@ -327,7 +331,7 @@
               </td>
             </tr>
             <tr>
-              <td>Business Application 456</td>
+              <td>Business Application 456<div style="font-size:1.3rem;margin-top:2px;">SUB-000172105-001</div></td>
               <td>Task 2 of 2</td>
               <td>Jennifer Lee</td>
               <td>Alan Jones</td>
@@ -343,7 +347,7 @@
               </td>
             </tr>
             <tr>
-              <td>Professional Engineer Application</td>
+              <td>Professional Engineer Application<div style="font-size:1.3rem;margin-top:2px;">SUB-000173890-001</div></td>
               <td>Task 1 of 1</td>
               <td>David Brown</td>
               <td>Sarah Johnson</td>
@@ -414,7 +418,7 @@
         <table class="usa-table usa-table--borderless usa-table--striped">
           <thead>
             <tr>
-              <th scope="col" role="columnheader" aria-sort="none">Application Title <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none">Application Title / Submission No. <span class="sort-arrows"></span></th>
               <th scope="col" role="columnheader" aria-sort="none">Task Name <span class="sort-arrows"></span></th>
               <th scope="col" role="columnheader" aria-sort="none">Constituent Name <span class="sort-arrows"></span></th>
               <th scope="col" role="columnheader" aria-sort="none">Submitted Date <span class="sort-arrows"></span></th>
@@ -427,7 +431,7 @@
           </thead>
           <tbody>
             <tr>
-              <td>Business Application 456</td>
+              <td>Business Application 456<div style="font-size:1.3rem;margin-top:2px;">SUB-000172105-001</div></td>
               <td>Background Check</td>
               <td>Jennifer Lee</td>
               <td>03/18/2026</td>
@@ -442,7 +446,7 @@
               </td>
             </tr>
             <tr>
-              <td>Contractor License Application</td>
+              <td>Contractor License Application<div style="font-size:1.3rem;margin-top:2px;">SUB-000169876-001</div></td>
               <td>Eligibility Review</td>
               <td>Kevin Martinez</td>
               <td>03/10/2026</td>
@@ -457,7 +461,7 @@
               </td>
             </tr>
             <tr>
-              <td>Professional Engineer Application</td>
+              <td>Professional Engineer Application<div style="font-size:1.3rem;margin-top:2px;">SUB-000167543-001</div></td>
               <td>Document Review</td>
               <td>Lisa Thompson</td>
               <td>02/25/2026</td>
@@ -472,7 +476,7 @@
               </td>
             </tr>
             <tr>
-              <td>Business Application 789</td>
+              <td>Business Application 789<div style="font-size:1.3rem;margin-top:2px;">SUB-000170234-001</div></td>
               <td>Background Check</td>
               <td>Thomas Wilson</td>
               <td>03/01/2026</td>
