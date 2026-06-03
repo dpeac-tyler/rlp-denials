@@ -259,7 +259,18 @@
             <strong>Showing 1 - 5 of 5 Entries</strong>
           </div>
           <div class="table-controls__right">
-            <label for="entries-per-page" class="table-controls__label">Show</label>
+            <span class="col-picker-label">Set Column Headers</span>
+            <div class="col-picker-wrapper">
+              <button type="button" class="col-picker-btn" id="open-col-picker-btn" aria-haspopup="listbox" aria-expanded="false">
+                <span>Please Select</span>
+                <span class="multiselect-arrow">▼</span>
+              </button>
+              <div class="col-picker-dropdown" id="open-col-picker-dropdown" hidden>
+                <input type="text" class="col-picker-filter" id="open-col-filter" placeholder="Filter Table Headers">
+                <div class="col-picker-options"></div>
+              </div>
+            </div>
+            <label for="entries-per-page" class="table-controls__label" style="margin-left:2rem;">Show</label>
             <select class="usa-select table-controls__select" id="entries-per-page" name="entries-per-page">
               <option value="100" selected>100</option>
               <option value="50">50</option>
@@ -269,27 +280,29 @@
           </div>
         </div>
 
-        <table class="usa-table usa-table--borderless usa-table--striped">
+        <table id="open-table" class="usa-table usa-table--borderless usa-table--striped">
           <thead>
             <tr>
-              <th scope="col" role="columnheader" aria-sort="none">Application Title / Submission No. <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader" aria-sort="none">Task Name <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader" aria-sort="none">Constituent Name <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader" aria-sort="none">Submitted By <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader" aria-sort="none">Submitted Date <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader" aria-sort="none">User Group <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader">Controls</th>
+              <th scope="col" role="columnheader" aria-sort="none" data-col="app-title">Application Title <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none" data-col="submission-no" class="col-hidden">Submission Number <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none" data-col="task-name">Task Name <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none" data-col="constituent">Constituent Name <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none" data-col="submitted-by">Submitted By <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none" data-col="submitted-date">Submitted Date <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none" data-col="user-group">User Group <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" data-col="controls">Controls</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Business Application 123<div style="font-size:1.3rem;margin-top:2px;">SUB-000165432-001</div></td>
-              <td>Task 1 of 1</td>
-              <td>John Smith</td>
-              <td>Alan Jones</td>
-              <td>03/15/2026</td>
-              <td>License Reviewers</td>
-              <td>
+              <td data-col="app-title">Business Application 123</td>
+              <td data-col="submission-no" class="col-hidden">SUB-000165432-001</td>
+              <td data-col="task-name">Task 1 of 1</td>
+              <td data-col="constituent">John Smith</td>
+              <td data-col="submitted-by">Alan Jones</td>
+              <td data-col="submitted-date">03/15/2026</td>
+              <td data-col="user-group">License Reviewers</td>
+              <td data-col="controls">
                 <a href="task-detail.html?id=1" class="icon-button" aria-label="View Task">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
@@ -299,13 +312,14 @@
               </td>
             </tr>
             <tr>
-              <td>Professional Engineer Application<div style="font-size:1.3rem;margin-top:2px;">SUB-000168901-002</div></td>
-              <td>Task 1 of 2</td>
-              <td>Maria Garcia</td>
-              <td>Sarah Johnson</td>
-              <td>03/16/2026</td>
-              <td>Application Processors</td>
-              <td>
+              <td data-col="app-title">Professional Engineer Application</td>
+              <td data-col="submission-no" class="col-hidden">SUB-000168901-002</td>
+              <td data-col="task-name">Task 1 of 2</td>
+              <td data-col="constituent">Maria Garcia</td>
+              <td data-col="submitted-by">Sarah Johnson</td>
+              <td data-col="submitted-date">03/16/2026</td>
+              <td data-col="user-group">Application Processors</td>
+              <td data-col="controls">
                 <a href="task-detail.html?id=2" class="icon-button" aria-label="View Task">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
@@ -315,13 +329,14 @@
               </td>
             </tr>
             <tr>
-              <td>Contractor License Renewal<div style="font-size:1.3rem;margin-top:2px;">SUB-000171234-001</div></td>
-              <td>Task 1 of 1</td>
-              <td>Robert Williams</td>
-              <td>Michael Chen</td>
-              <td>03/17/2026</td>
-              <td>License Reviewers</td>
-              <td>
+              <td data-col="app-title">Contractor License Renewal</td>
+              <td data-col="submission-no" class="col-hidden">SUB-000171234-001</td>
+              <td data-col="task-name">Task 1 of 1</td>
+              <td data-col="constituent">Robert Williams</td>
+              <td data-col="submitted-by">Michael Chen</td>
+              <td data-col="submitted-date">03/17/2026</td>
+              <td data-col="user-group">License Reviewers</td>
+              <td data-col="controls">
                 <a href="task-detail.html?id=3" class="icon-button" aria-label="View Task">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
@@ -331,13 +346,14 @@
               </td>
             </tr>
             <tr>
-              <td>Business Application 456<div style="font-size:1.3rem;margin-top:2px;">SUB-000172105-001</div></td>
-              <td>Task 2 of 2</td>
-              <td>Jennifer Lee</td>
-              <td>Alan Jones</td>
-              <td>03/18/2026</td>
-              <td>Application Processors</td>
-              <td>
+              <td data-col="app-title">Business Application 456</td>
+              <td data-col="submission-no" class="col-hidden">SUB-000172105-001</td>
+              <td data-col="task-name">Task 2 of 2</td>
+              <td data-col="constituent">Jennifer Lee</td>
+              <td data-col="submitted-by">Alan Jones</td>
+              <td data-col="submitted-date">03/18/2026</td>
+              <td data-col="user-group">Application Processors</td>
+              <td data-col="controls">
                 <a href="task-detail.html?id=4" class="icon-button" aria-label="View Task">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
@@ -347,13 +363,14 @@
               </td>
             </tr>
             <tr>
-              <td>Professional Engineer Application<div style="font-size:1.3rem;margin-top:2px;">SUB-000173890-001</div></td>
-              <td>Task 1 of 1</td>
-              <td>David Brown</td>
-              <td>Sarah Johnson</td>
-              <td>03/19/2026</td>
-              <td>License Reviewers</td>
-              <td>
+              <td data-col="app-title">Professional Engineer Application</td>
+              <td data-col="submission-no" class="col-hidden">SUB-000173890-001</td>
+              <td data-col="task-name">Task 1 of 1</td>
+              <td data-col="constituent">David Brown</td>
+              <td data-col="submitted-by">Sarah Johnson</td>
+              <td data-col="submitted-date">03/19/2026</td>
+              <td data-col="user-group">License Reviewers</td>
+              <td data-col="controls">
                 <a href="task-detail.html?id=5" class="icon-button" aria-label="View Task">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
@@ -405,7 +422,18 @@
             <strong>Showing 1 - 4 of 4 Entries</strong>
           </div>
           <div class="table-controls__right">
-            <label for="denied-entries-per-page" class="table-controls__label">Show</label>
+            <span class="col-picker-label">Set Column Headers</span>
+            <div class="col-picker-wrapper">
+              <button type="button" class="col-picker-btn" id="denied-col-picker-btn" aria-haspopup="listbox" aria-expanded="false">
+                <span>Please Select</span>
+                <span class="multiselect-arrow">▼</span>
+              </button>
+              <div class="col-picker-dropdown" id="denied-col-picker-dropdown" hidden>
+                <input type="text" class="col-picker-filter" id="denied-col-filter" placeholder="Filter Table Headers">
+                <div class="col-picker-options"></div>
+              </div>
+            </div>
+            <label for="denied-entries-per-page" class="table-controls__label" style="margin-left:2rem;">Show</label>
             <select class="usa-select table-controls__select" id="denied-entries-per-page" name="denied-entries-per-page">
               <option value="100" selected>100</option>
               <option value="50">50</option>
@@ -415,76 +443,76 @@
           </div>
         </div>
 
-        <table class="usa-table usa-table--borderless usa-table--striped">
+        <table id="denied-table" class="usa-table usa-table--borderless usa-table--striped">
           <thead>
             <tr>
-              <th scope="col" role="columnheader" aria-sort="none">Application Title / Submission No. <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader" aria-sort="none">Task Name <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader" aria-sort="none">Constituent Name <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader" aria-sort="none">Submitted Date <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader" aria-sort="none">Closed Date <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader" aria-sort="none">Closed By <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader" aria-sort="none">User Group <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader" aria-sort="none">Final Status <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader">Controls</th>
+              <th scope="col" role="columnheader" aria-sort="none" data-col="app-title">Application Title <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none" data-col="task-name">Task Name <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none" data-col="constituent">Constituent Name <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none" data-col="submitted-date">Submitted Date <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none" data-col="closed-date">Closed Date <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none" data-col="closed-by">Closed By <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none" data-col="user-group">User Group <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none" data-col="final-status">Final Status <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" data-col="controls">Controls</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Business Application 456<div style="font-size:1.3rem;margin-top:2px;">SUB-000172105-001</div></td>
-              <td>Background Check</td>
-              <td>Jennifer Lee</td>
-              <td>03/18/2026</td>
-              <td>04/02/2026</td>
-              <td>Sarah Johnson</td>
-              <td>Application Processors</td>
-              <td class="status-denied">Denied</td>
-              <td>
+              <td data-col="app-title">Business Application 456</td>
+              <td data-col="task-name">Background Check</td>
+              <td data-col="constituent">Jennifer Lee</td>
+              <td data-col="submitted-date">03/18/2026</td>
+              <td data-col="closed-date">04/02/2026</td>
+              <td data-col="closed-by">Sarah Johnson</td>
+              <td data-col="user-group">Application Processors</td>
+              <td data-col="final-status" class="status-denied">Denied</td>
+              <td data-col="controls">
                 <a href="task-detail-denied.html" class="icon-button" aria-label="View Task">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
               </td>
             </tr>
             <tr>
-              <td>Contractor License Application<div style="font-size:1.3rem;margin-top:2px;">SUB-000169876-001</div></td>
-              <td>Eligibility Review</td>
-              <td>Kevin Martinez</td>
-              <td>03/10/2026</td>
-              <td>03/28/2026</td>
-              <td>Michael Chen</td>
-              <td>License Reviewers</td>
-              <td class="status-denied">Denied</td>
-              <td>
+              <td data-col="app-title">Contractor License Application</td>
+              <td data-col="task-name">Eligibility Review</td>
+              <td data-col="constituent">Kevin Martinez</td>
+              <td data-col="submitted-date">03/10/2026</td>
+              <td data-col="closed-date">03/28/2026</td>
+              <td data-col="closed-by">Michael Chen</td>
+              <td data-col="user-group">License Reviewers</td>
+              <td data-col="final-status" class="status-denied">Denied</td>
+              <td data-col="controls">
                 <a href="task-detail-denied.html" class="icon-button" aria-label="View Task">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
               </td>
             </tr>
             <tr>
-              <td>Professional Engineer Application<div style="font-size:1.3rem;margin-top:2px;">SUB-000167543-001</div></td>
-              <td>Document Review</td>
-              <td>Lisa Thompson</td>
-              <td>02/25/2026</td>
-              <td>03/15/2026</td>
-              <td>Alan Jones</td>
-              <td>License Reviewers</td>
-              <td class="status-denied">Denied</td>
-              <td>
+              <td data-col="app-title">Professional Engineer Application</td>
+              <td data-col="task-name">Document Review</td>
+              <td data-col="constituent">Lisa Thompson</td>
+              <td data-col="submitted-date">02/25/2026</td>
+              <td data-col="closed-date">03/15/2026</td>
+              <td data-col="closed-by">Alan Jones</td>
+              <td data-col="user-group">License Reviewers</td>
+              <td data-col="final-status" class="status-denied">Denied</td>
+              <td data-col="controls">
                 <a href="task-detail-denied.html" class="icon-button" aria-label="View Task">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
               </td>
             </tr>
             <tr>
-              <td>Business Application 789<div style="font-size:1.3rem;margin-top:2px;">SUB-000170234-001</div></td>
-              <td>Background Check</td>
-              <td>Thomas Wilson</td>
-              <td>03/01/2026</td>
-              <td>03/20/2026</td>
-              <td>Sarah Johnson</td>
-              <td>Application Processors</td>
-              <td class="status-denied">Denied</td>
-              <td>
+              <td data-col="app-title">Business Application 789</td>
+              <td data-col="task-name">Background Check</td>
+              <td data-col="constituent">Thomas Wilson</td>
+              <td data-col="submitted-date">03/01/2026</td>
+              <td data-col="closed-date">03/20/2026</td>
+              <td data-col="closed-by">Sarah Johnson</td>
+              <td data-col="user-group">Application Processors</td>
+              <td data-col="final-status" class="status-denied">Denied</td>
+              <td data-col="controls">
                 <a href="task-detail-denied.html" class="icon-button" aria-label="View Task">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
@@ -516,6 +544,101 @@
 
     </main>
   </div>
+
+  <style>
+    .col-hidden { display: none !important; }
+
+    .col-picker-label {
+      font-weight: 700;
+      font-size: 1.6rem;
+      white-space: nowrap;
+      margin-right: 0.8rem;
+    }
+
+    .col-picker-wrapper {
+      position: relative;
+    }
+
+    .col-picker-btn {
+      height: 4rem;
+      padding: 0 1rem;
+      font-size: 1.6rem;
+      color: #444;
+      background-color: #fff;
+      border: 1px solid #565c65;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      white-space: nowrap;
+    }
+
+    .col-picker-btn:hover { border-color: #1b1b1b; }
+
+    .col-picker-btn[aria-expanded="true"] {
+      border-color: #2491ff;
+      outline: 2px solid #2491ff;
+      outline-offset: 0;
+    }
+
+    .col-picker-dropdown {
+      position: absolute;
+      top: calc(100% + 2px);
+      right: 0;
+      z-index: 200;
+      background: #fff;
+      border: 1px solid #adadad;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      min-width: 26rem;
+    }
+
+    .col-picker-filter {
+      display: block;
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: none;
+      border-bottom: 1px solid #dfe1e2;
+      font-size: 1.6rem;
+      box-sizing: border-box;
+    }
+
+    .col-picker-filter:focus { outline: 2px solid #2491ff; outline-offset: -2px; }
+
+    .col-picker-options { max-height: 34rem; overflow-y: auto; }
+
+    .col-picker-option {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid #dfe1e2;
+      cursor: pointer;
+      font-size: 1.6rem;
+      margin: 0;
+    }
+
+    .col-picker-option:last-child { border-bottom: none; }
+    .col-picker-option:hover { background: #f0f0f0; }
+
+    .col-picker-option input[type="checkbox"] {
+      width: 2.2rem;
+      height: 2.2rem;
+      flex-shrink: 0;
+      accent-color: #1a4480;
+      cursor: pointer;
+    }
+
+    .col-picker-option--locked { cursor: default; }
+    .col-picker-option--locked:hover { background: transparent; }
+
+    .col-picker-option--locked input[type="checkbox"] {
+      accent-color: #71767a;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .col-picker-option--locked span { color: #71767a; }
+  </style>
 
   <script>
     // Category filter button switching
@@ -612,13 +735,133 @@
       });
 
       // Handle clear button to reset multi-select
-      const clearButton = document.querySelector('.usa-button--outline');
+      const clearButton = document.querySelector('button.usa-button--outline');
       if (clearButton) {
         clearButton.addEventListener('click', function() {
           checkboxes.forEach(cb => cb.checked = false);
           updateButtonText();
         });
       }
+    })();
+
+    // Column picker
+    (function() {
+      var openCols = [
+        { key: 'app-title',      label: 'Application Title',  locked: false, defaultOn: true },
+        { key: 'submission-no',  label: 'Submission Number',  locked: false, defaultOn: false },
+        { key: 'task-name',      label: 'Task Name',          locked: false, defaultOn: true },
+        { key: 'constituent',    label: 'Constituent Name',   locked: false, defaultOn: true },
+        { key: 'submitted-by',   label: 'Submitted By',       locked: false, defaultOn: true },
+        { key: 'submitted-date', label: 'Submitted Date',     locked: false, defaultOn: true },
+        { key: 'user-group',     label: 'User Group',         locked: false, defaultOn: true },
+        { key: 'controls',       label: 'Controls',           locked: true,  defaultOn: true }
+      ];
+
+      var deniedCols = [
+        { key: 'app-title',      label: 'Application Title',  locked: false, defaultOn: true },
+        { key: 'task-name',      label: 'Task Name',          locked: false, defaultOn: true },
+        { key: 'constituent',    label: 'Constituent Name',   locked: false, defaultOn: true },
+        { key: 'submitted-date', label: 'Submitted Date',     locked: false, defaultOn: true },
+        { key: 'closed-date',    label: 'Closed Date',        locked: false, defaultOn: true },
+        { key: 'closed-by',      label: 'Closed By',          locked: false, defaultOn: true },
+        { key: 'user-group',     label: 'User Group',         locked: false, defaultOn: true },
+        { key: 'final-status',   label: 'Final Status',       locked: false, defaultOn: true },
+        { key: 'controls',       label: 'Controls',           locked: true,  defaultOn: true }
+      ];
+
+      function loadPrefs(storageKey, cols) {
+        try {
+          var saved = localStorage.getItem(storageKey);
+          var prefs = saved ? JSON.parse(saved) : {};
+          cols.forEach(function(col) {
+            col.visible = col.locked ? true : (prefs.hasOwnProperty(col.key) ? prefs[col.key] : col.defaultOn);
+          });
+        } catch(e) {
+          cols.forEach(function(col) { col.visible = col.defaultOn; });
+        }
+      }
+
+      function savePrefs(storageKey, cols) {
+        var prefs = {};
+        cols.forEach(function(col) { if (!col.locked) prefs[col.key] = col.visible; });
+        try { localStorage.setItem(storageKey, JSON.stringify(prefs)); } catch(e) {}
+      }
+
+      function applyVisibility(tableId, cols) {
+        var table = document.getElementById(tableId);
+        if (!table) return;
+        cols.forEach(function(col) {
+          table.querySelectorAll('[data-col="' + col.key + '"]').forEach(function(el) {
+            el.classList.toggle('col-hidden', !col.visible);
+          });
+        });
+      }
+
+      function buildPicker(btnId, dropdownId, filterId, cols, storageKey, tableId) {
+        var btn = document.getElementById(btnId);
+        var dropdown = document.getElementById(dropdownId);
+        var filterInput = document.getElementById(filterId);
+        var optionsList = dropdown.querySelector('.col-picker-options');
+
+        function renderOptions(filter) {
+          optionsList.innerHTML = '';
+          cols.forEach(function(col) {
+            if (filter && col.label.toLowerCase().indexOf(filter.toLowerCase()) === -1) return;
+            var lbl = document.createElement('label');
+            lbl.className = 'col-picker-option' + (col.locked ? ' col-picker-option--locked' : '');
+            var cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.checked = col.visible;
+            cb.disabled = col.locked;
+            var span = document.createElement('span');
+            span.textContent = col.label;
+            lbl.appendChild(cb);
+            lbl.appendChild(span);
+            optionsList.appendChild(lbl);
+            if (!col.locked) {
+              cb.addEventListener('change', function() {
+                col.visible = cb.checked;
+                applyVisibility(tableId, cols);
+                savePrefs(storageKey, cols);
+              });
+            }
+          });
+        }
+
+        renderOptions('');
+
+        filterInput.addEventListener('input', function() { renderOptions(this.value); });
+
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var isOpen = btn.getAttribute('aria-expanded') === 'true';
+          if (isOpen) {
+            btn.setAttribute('aria-expanded', 'false');
+            dropdown.setAttribute('hidden', '');
+          } else {
+            btn.setAttribute('aria-expanded', 'true');
+            dropdown.removeAttribute('hidden');
+            filterInput.value = '';
+            renderOptions('');
+            filterInput.focus();
+          }
+        });
+
+        dropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+
+        document.addEventListener('click', function() {
+          btn.setAttribute('aria-expanded', 'false');
+          dropdown.setAttribute('hidden', '');
+        });
+      }
+
+      loadPrefs('queues-open-cols', openCols);
+      applyVisibility('open-table', openCols);
+      buildPicker('open-col-picker-btn', 'open-col-picker-dropdown', 'open-col-filter', openCols, 'queues-open-cols', 'open-table');
+
+      loadPrefs('queues-denied-cols', deniedCols);
+      applyVisibility('denied-table', deniedCols);
+      buildPicker('denied-col-picker-btn', 'denied-col-picker-dropdown', 'denied-col-filter', deniedCols, 'queues-denied-cols', 'denied-table');
     })();
   </script>
 </body>
