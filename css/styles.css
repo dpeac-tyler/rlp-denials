@@ -1975,8 +1975,8 @@ input[type="date"].usa-input {
   position: absolute;
   left: 1.6rem;
   top: 1.6rem;
-  width: 3.2rem;
-  height: 3.2rem;
+  width: 3rem;
+  height: 3rem;
   background-color: #d54309;
   border-radius: 50%;
 }
@@ -1987,7 +1987,7 @@ input[type="date"].usa-input {
   left: 2.8rem;
   top: 2rem;
   color: #fff;
-  font-size: 2.4rem;
+  font-size: 2.1rem;
   font-weight: 700;
   line-height: 1;
 }
@@ -2007,7 +2007,7 @@ input[type="date"].usa-input {
 
 .usa-alert--info::after {
   content: "i";
-  left: 3rem;
+  left: 2.85rem;
   font-style: normal;
   font-weight: 700;
 }
