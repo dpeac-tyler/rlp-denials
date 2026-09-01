@@ -387,6 +387,59 @@
         submissionNumber: "567890123",
         customerNumber: "CUST-10005",
         username: "dbrown2024"
+      },
+      // Denied cases - match the Denied view rows in queues.html
+      d1: {
+        applicationTitle: "Business Application 456",
+        taskName: "Background Check",
+        constituentName: "Jennifer Lee",
+        submittedBy: "Sarah Johnson",
+        submittedDate: "03/18/2026",
+        closedDate: "04/02/2026",
+        userGroup: "Application Processors",
+        submissionNumber: "SUB-000456201-001",
+        customerNumber: "000456201",
+        username: "jlee2024",
+        denialReasons: ["DEN-001 - Application Incomplete", "DEN-003 - Eligibility Not Met"]
+      },
+      d2: {
+        applicationTitle: "Contractor License Application",
+        taskName: "Eligibility Review",
+        constituentName: "Kevin Martinez",
+        submittedBy: "Michael Chen",
+        submittedDate: "03/10/2026",
+        closedDate: "03/28/2026",
+        userGroup: "License Reviewers",
+        submissionNumber: "SUB-000310455-001",
+        customerNumber: "000310455",
+        username: "kmartinez2024",
+        denialReasons: ["DEN-003 - Eligibility Not Met"]
+      },
+      d3: {
+        applicationTitle: "Professional Engineer Application",
+        taskName: "Document Review",
+        constituentName: "Lisa Thompson",
+        submittedBy: "Alan Jones",
+        submittedDate: "02/25/2026",
+        closedDate: "03/15/2026",
+        userGroup: "License Reviewers",
+        submissionNumber: "SUB-000225780-001",
+        customerNumber: "000225780",
+        username: "lthompson2024",
+        denialReasons: ["DEN-002 - Required Documents Not Provided"]
+      },
+      d4: {
+        applicationTitle: "Business Application 789",
+        taskName: "Background Check",
+        constituentName: "Thomas Wilson",
+        submittedBy: "Sarah Johnson",
+        submittedDate: "03/01/2026",
+        closedDate: "03/20/2026",
+        userGroup: "Application Processors",
+        submissionNumber: "SUB-000301944-001",
+        customerNumber: "000301944",
+        username: "twilson2024",
+        denialReasons: ["DEN-001 - Application Incomplete", "DEN-004 - Background Check Failed"]
       }
     };
 
@@ -395,11 +448,24 @@
     const taskId = urlParams.get('id');
 
     // Load the task data
+    const isDeniedCase = !!(taskId && /^d\d+$/.test(taskId));
+
     if (taskId && taskData[taskId]) {
       const task = taskData[taskId];
 
-      // Update breadcrumb with task name
+      // Update breadcrumb with task name - denied cases are reached from the Queues Denied view
       document.getElementById('breadcrumb-task-name').textContent = task.taskName;
+      if (isDeniedCase) {
+        const crumb = document.querySelector('.usa-breadcrumb__link');
+        crumb.href = 'queues.html?view=denied';
+        crumb.textContent = 'Queues';
+      }
+
+      // Denial reasons for this case
+      if (task.denialReasons) {
+        document.getElementById('denial-reasons-list').innerHTML =
+          task.denialReasons.map(r => '<li>' + r + '</li>').join('');
+      }
 
       // Update header information
       document.getElementById('header-application-title').textContent = task.applicationTitle;
@@ -436,6 +502,19 @@
       const accordionContent = document.getElementById('personal-info-content');
       accordionContent.removeAttribute('hidden');
 
+      // Activity log reflects this case's dates
+      if (task.closedDate) {
+        const activityRows = document.querySelectorAll('#activity-panel tbody tr');
+        if (activityRows.length === 2) {
+          activityRows[0].cells[0].textContent = task.submittedBy;
+          activityRows[0].cells[1].textContent = task.taskName + ' - Denied';
+          activityRows[0].cells[2].textContent = task.closedDate + ' - 11:32:45 AM';
+          activityRows[1].cells[0].textContent = task.submittedBy;
+          activityRows[1].cells[1].textContent = task.taskName + ' - Claimed';
+          activityRows[1].cells[2].textContent = task.submittedDate + ' - 10:32:44 AM';
+        }
+      }
+
       // Update Initiate Inspection link with task ID
       const initiateInspectionBtn = document.getElementById('initiate-inspection-btn');
       if (initiateInspectionBtn) {
@@ -447,19 +526,36 @@
     (function() {
       const openBtn = document.getElementById('open-appeal-btn');
       const caseInfo = document.getElementById('appeal-case-info');
+      const caseLink = caseInfo.querySelector('a');
+      const task = (taskId && taskData[taskId]) || null;
 
-      const existing = localStorage.getItem('rlp_open_appeal_case');
+      // Appeal state is tracked per denied case so opening one appeal does not
+      // remove the button from the other denied cases.
+      const caseKey = 'rlp_open_appeal_case_' + (taskId || 'default');
+
+      // d1 (Business Application 456) is the standing demo case: the Open Appeal
+      // Case button always stays available so the flow can be re-run repeatedly.
+      const alwaysAllowAppeal = (taskId === 'd1');
+
+      const existing = localStorage.getItem(caseKey);
       if (existing) {
         const c = JSON.parse(existing);
         document.getElementById('appeal-opened-datetime').textContent = c.openedAt;
-        openBtn.hidden = true;
+        if (c.caseId) {
+          caseLink.textContent = 'View Case ' + c.caseId;
+          caseLink.href = 'view-cases.html?case=' + encodeURIComponent(c.caseId);
+        }
         caseInfo.removeAttribute('hidden');
+        openBtn.hidden = !alwaysAllowAppeal;
       }
 
       openBtn.addEventListener('click', function() {
         localStorage.setItem('rlp_appeal_intent', JSON.stringify({
-          submissionNumber: 'SUB-000172601-001',
-          constituentName: 'Sarah Johnson',
+          caseKey: caseKey,
+          returnTo: 'task-detail-denied.html' + (taskId ? '?id=' + taskId : ''),
+          submissionNumber: task ? task.submissionNumber : document.getElementById('submission-number').textContent,
+          constituentName: task ? task.constituentName : document.getElementById('customer-name').textContent,
+          applicationTitle: task ? task.applicationTitle : document.getElementById('header-application-title').textContent,
           fromDeniedTask: true
         }));
         window.location.href = 'create-case.html';

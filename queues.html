@@ -468,7 +468,7 @@
               <td data-col="user-group">Application Processors</td>
               <td data-col="final-status" class="status-denied">Denied</td>
               <td data-col="controls">
-                <a href="task-detail-denied.html" class="icon-button" aria-label="View Task">
+                <a href="task-detail-denied.html?id=d1" class="icon-button" aria-label="View Task">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
               </td>
@@ -483,7 +483,7 @@
               <td data-col="user-group">License Reviewers</td>
               <td data-col="final-status" class="status-denied">Denied</td>
               <td data-col="controls">
-                <a href="task-detail-denied.html" class="icon-button" aria-label="View Task">
+                <a href="task-detail-denied.html?id=d2" class="icon-button" aria-label="View Task">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
               </td>
@@ -498,7 +498,7 @@
               <td data-col="user-group">License Reviewers</td>
               <td data-col="final-status" class="status-denied">Denied</td>
               <td data-col="controls">
-                <a href="task-detail-denied.html" class="icon-button" aria-label="View Task">
+                <a href="task-detail-denied.html?id=d3" class="icon-button" aria-label="View Task">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
               </td>
@@ -513,7 +513,7 @@
               <td data-col="user-group">Application Processors</td>
               <td data-col="final-status" class="status-denied">Denied</td>
               <td data-col="controls">
-                <a href="task-detail-denied.html" class="icon-button" aria-label="View Task">
+                <a href="task-detail-denied.html?id=d4" class="icon-button" aria-label="View Task">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
               </td>
@@ -649,19 +649,30 @@
       const pageTitle = document.querySelector('.page-title');
       const breadcrumbCurrent = document.querySelector('.usa-breadcrumb__list-item.usa-current span');
 
+      function activate(btn) {
+        filterBtns.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+
+        const label = btn.textContent.trim();
+        pageTitle.textContent = label + ' Applications';
+        breadcrumbCurrent.textContent = label;
+
+        openView.hidden = (label !== 'Open');
+        deniedView.hidden = (label !== 'Denied');
+      }
+
       filterBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          filterBtns.forEach(function(b) { b.classList.remove('active'); });
-          this.classList.add('active');
-
-          const label = this.textContent.trim();
-          pageTitle.textContent = label + ' Applications';
-          breadcrumbCurrent.textContent = label;
-
-          openView.hidden = (label !== 'Open');
-          deniedView.hidden = (label !== 'Denied');
-        });
+        btn.addEventListener('click', function() { activate(this); });
       });
+
+      // Allow deep-linking straight to a category, e.g. queues.html?view=denied
+      const requestedView = new URLSearchParams(window.location.search).get('view');
+      if (requestedView) {
+        const match = Array.from(filterBtns).find(function(b) {
+          return b.textContent.trim().toLowerCase() === requestedView.toLowerCase();
+        });
+        if (match) activate(match);
+      }
     })();
 
     // Accordion functionality

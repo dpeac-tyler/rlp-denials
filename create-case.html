@@ -109,6 +109,15 @@
         <p>Enter case information to create a new complaint case. All fields marked with <span class="field-required">Required</span> indicate a required field.</p>
       </div>
 
+      <div class="usa-alert usa-alert--info margin-top-2" id="appeal-source-alert" hidden>
+        <div class="usa-alert__body">
+          <p class="usa-alert__text">
+            Appeal of denied submission <strong id="appeal-source-submission"></strong>
+            (<span id="appeal-source-application"></span>)
+          </p>
+        </div>
+      </div>
+
       <h2 class="margin-top-4">Case Information</h2>
       <hr>
 
@@ -438,11 +447,19 @@
 
     // If arriving from an appeal context, pre-select Appeal and fill complainant name
     const appealIntent = localStorage.getItem('rlp_appeal_intent');
+    let intent = null;
     if (appealIntent) {
-      const intent = JSON.parse(appealIntent);
+      intent = JSON.parse(appealIntent);
       document.getElementById('case-type-appeal').checked = true;
       if (intent.constituentName) {
         document.getElementById('complainant-name').value = intent.constituentName;
+      }
+      if (intent.submissionNumber) {
+        document.getElementById('appeal-source-submission').textContent = intent.submissionNumber;
+        if (intent.applicationTitle) {
+          document.getElementById('appeal-source-application').textContent = intent.applicationTitle;
+        }
+        document.getElementById('appeal-source-alert').removeAttribute('hidden');
       }
     }
 
@@ -629,6 +646,10 @@
       }
       const subjectRows = document.getElementById('case-subjects-tbody').rows;
       let subjectName = '—', licenseNumber = '—', licenseType = '—', practiceAddress = '—', subjectEmail = '—';
+      if (subjectRows.length === 0 && intent && intent.constituentName) {
+        // Appeal opened from a denied submission - default the subject to that constituent
+        subjectName = intent.constituentName;
+      }
       if (subjectRows.length > 0) {
         const r = subjectRows[0];
         subjectName = r.cells[0].textContent;
@@ -649,7 +670,7 @@
         emailAddress: emailVal || '—',
         filingMethod: document.getElementById('filing-method').value,
         incidentDate: incidentDate,
-        caseType: 'Complaint',
+        caseType: (document.querySelector('input[name="case-type"]:checked') || {}).value || 'Complaint',
         description: document.getElementById('complaint-description').value.trim(),
         priority: document.getElementById('priority').value,
         phoneNumber: document.getElementById('phone-number').value.trim(),
@@ -659,17 +680,18 @@
       sessionStorage.setItem('case_' + cn, JSON.stringify(newCase));
       sessionStorage.setItem('newCaseCreated', cn);
 
-      // If this came from an appeal, record the case and return to the denied task
-      if (localStorage.getItem('rlp_appeal_intent')) {
+      // If this came from an appeal, record the case and return to that denied case
+      if (intent) {
         const t = new Date();
         const hh = t.getHours() % 12 || 12;
         const min = String(t.getMinutes()).padStart(2, '0');
         const sec = String(t.getSeconds()).padStart(2, '0');
         const ampm = t.getHours() >= 12 ? 'PM' : 'AM';
         const openedAt = mm + '/' + dd + '/' + yyyy + ' - ' + hh + ':' + min + ':' + sec + ' ' + ampm;
-        localStorage.setItem('rlp_open_appeal_case', JSON.stringify({ caseId: cn, openedAt }));
+        const caseKey = intent.caseKey || 'rlp_open_appeal_case_default';
+        localStorage.setItem(caseKey, JSON.stringify({ caseId: cn, openedAt }));
         localStorage.removeItem('rlp_appeal_intent');
-        window.location.href = 'task-detail-denied.html';
+        window.location.href = intent.returnTo || 'task-detail-denied.html';
         return;
       }
 
@@ -688,9 +710,10 @@
     });
 
     document.getElementById('cancel-btn').addEventListener('click', () => {
-      if (localStorage.getItem('rlp_appeal_intent')) {
+      if (intent) {
+        const back = intent.returnTo || 'task-detail-denied.html';
         localStorage.removeItem('rlp_appeal_intent');
-        window.location.href = 'task-detail-denied.html';
+        window.location.href = back;
       } else {
         window.location.href = 'view-cases.html';
       }
